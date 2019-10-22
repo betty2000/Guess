@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-private TextView number;
+private TextView ednumber;
 int counter;
 int secret = new Random().nextInt(10) + 1;
     @Override
@@ -26,20 +26,20 @@ int secret = new Random().nextInt(10) + 1;
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        number  = findViewById(R.id.toolbar);
+        ednumber  = findViewById(R.id.fab);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              counter++;
-              number.setText(String.valueOf(counter));
+             int n = Integer.parseInt((ednumber.getText().toString()));
+             ednumber.setText((Integer.toString(n)));
 
-              if(counter>secret){
+              if(n>secret){
                   Toast.makeText(MainActivity.this,"smaller", Toast.LENGTH_LONG).show();
-             }if (counter<secret){
+             }else if (n<secret){
                     Toast.makeText(MainActivity.this,"bigger", Toast.LENGTH_LONG).show();
-             }if (counter==secret){
+             }if (n==secret){
                     Toast.makeText(MainActivity.this, "congratulations", Toast.LENGTH_LONG).show();
 
                 }
@@ -48,7 +48,7 @@ int secret = new Random().nextInt(10) + 1;
     }
 public void reset(View view ){
         counter=0;
-        number.setText(String.valueOf(counter));
+        ednumber.setText(String.valueOf(counter));
 }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
