@@ -11,44 +11,45 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-private TextView ednumber;
-int counter;
 int secret = new Random().nextInt(10) + 1;
+    private EditText ednumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ednumber  = findViewById(R.id.fab);
+        ednumber  = findViewById(R.id.ednumber);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            FloatingActionButton fab = findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                 public void onClick(View view) {
+                    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+        });
+    }
+
+       public void guess(View view){
              int n = Integer.parseInt((ednumber.getText().toString()));
-             ednumber.setText((Integer.toString(n)));
-
+              ednumber.setText((Integer.toString(n)));  }
               if(n>secret){
                   Toast.makeText(MainActivity.this,"smaller", Toast.LENGTH_LONG).show();
              }else if (n<secret){
                     Toast.makeText(MainActivity.this,"bigger", Toast.LENGTH_LONG).show();
-             }if (n==secret){
+             }else{
                     Toast.makeText(MainActivity.this, "congratulations", Toast.LENGTH_LONG).show();
 
                 }
             }
-        });
-    }
-public void reset(View view ){
-        counter=0;
-        ednumber.setText(String.valueOf(counter));
+
+
 }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
